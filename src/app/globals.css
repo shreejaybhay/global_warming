@@ -2,26 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
+  .animate-pulse {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+    border-radius: var(--radius);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: var(--radius);
+    border: 2px solid hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) hsl(var(--background));
+  }
 }
+
+@layer base {
+  :root {
+    /* Light theme - Modern, clean, professional look */
+    --background: 0 0% 100%; /* Pure white background */
+    --foreground: 222 47% 11%; /* Dark blue-gray text */
+    --card: 0 0% 100%; /* White card background */
+    --card-foreground: 222 47% 11%; /* Dark blue-gray card text */
+    --popover: 0 0% 100%; /* White popover background */
+    --popover-foreground: 222 47% 11%; /* Dark blue-gray popover text */
+    --primary: 221 83% 53%; /* Vibrant blue primary */
+    --primary-foreground: 210 40% 98%; /* Light text on primary */
+    --secondary: 210 40% 96%; /* Light blue-gray secondary */
+    --secondary-foreground: 222 47% 11%; /* Dark text on secondary */
+    --muted: 210 40% 96%; /* Light blue-gray muted background */
+    --muted-foreground: 215 16% 47%; /* Medium blue-gray muted text */
+    --accent: 142 71% 45%; /* Emerald green accent */
+    --accent-foreground: 210 40% 98%; /* Light text on accent */
+    --destructive: 0 84% 60%; /* Red for destructive actions */
+    --destructive-foreground: 210 40% 98%; /* Light text on destructive */
+    --border: 214 32% 91%; /* Light blue-gray border */
+    --input: 214 32% 91%; /* Light blue-gray input border */
+    --ring: 221 83% 53%; /* Blue ring (same as primary) */
+    --chart-1: 24 75% 50%; /* Orange */
+    --chart-2: 142 71% 45%; /* Green */
+    --chart-3: 201 96% 32%; /* Blue */
+    --chart-4: 271 91% 65%; /* Purple */
+    --chart-5: 0 84% 60%; /* Red */
+    --radius: 0.5rem;
+  }
+  .dark {
+    /* Dark theme – deep, warm undertones with high contrast */
+    --background: 30 20% 15%; /* Dark, warm background */
+    --foreground: 30 20% 95%; /* Nearly white text for legibility */
+    --card: 30 20% 15%; /* Dark card backgrounds */
+    --card-foreground: 30 20% 95%; /* Light text for cards */
+    --popover: 30 20% 15%; /* Consistent dark popovers */
+    --popover-foreground: 30 20% 95%; /* Bright text for popovers */
+    --primary: 15 90% 80%; /* Lighter, warm red/orange for primary accents */
+    --primary-foreground: 30 20% 15%; /* Dark text on primary elements */
+    --secondary: 45 90% 85%; /* Light warm yellow for secondary elements */
+    --secondary-foreground: 30 20% 15%; /* Dark secondary text */
+    --muted: 30 10% 25%; /* Dark muted tone for backgrounds */
+    --muted-foreground: 30 10% 75%; /* Lighter muted text for contrast */
+    --accent: 120 40% 60%; /* Brighter earthy green accent */
+    --accent-foreground: 30 20% 15%; /* Dark text on accent backgrounds */
+    --destructive: 0 84% 70%; /* Lighter red for destructive states */
+    --destructive-foreground: 30 20% 15%; /* Dark text for destructive alerts */
+    --border: 30 20% 25%; /* Darker border for definition */
+    --input: 30 20% 25%; /* Consistent input borders */
+    --ring: 15 90% 80%; /* Light ring color matching primary accents */
+    --chart-1: 20 80% 70%; /* Lighter orange for charts */
+    --chart-2: 120 60% 60%; /* Brighter green for data visualization */
+    --chart-3: 210 60% 60%; /* Lighter blue, representing water and sky */
+    --chart-4: 30 50% 60%; /* Lighter brown for chart details */
+    --chart-5: 0 80% 70%; /* Brighter red for emphasis */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
